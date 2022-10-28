@@ -3,8 +3,8 @@
  * return -1 in the case of wrong nBit value
  */
 public class BitOperations {
+	
 	/**
-	 *
 	 * @param number - any number
 	 * @param nBit   - number of bit
 	 * @return value of bit with number nBit
@@ -24,7 +24,6 @@ public class BitOperations {
 	}
 
 	/**
-	 *
 	 * @param number - any number
 	 * @param nBit   - number of bit which will be changed
 	 * @param value  - true/false (0 or 1) of bit which will be changed
