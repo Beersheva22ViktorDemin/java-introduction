@@ -12,12 +12,17 @@ public class BitOperations {
 	public static int getBitValue(long number, int nBit) {
 		int result = -1;
 		if (isValidNbit(nBit)) {
-			long mask = 1 << nBit; // all bits are 0 except bit number nBit // 1 << 2 100, 1 << 3 1000
-			// works only nbit not too big, max 32, because long is not ulong
-			if ((number & mask) == 0) {
-				result = 0;
-			} else {
-				result = 1;
+			long mask;
+			if (nBit < 31) {
+				mask = 1 << nBit; // all bits are 0 except bit number nBit // 1 << 2 100, 1 << 3 1000
+				if ((number & mask) == 0) {
+					result = 0;
+				} else {
+					result = 1;
+				}
+			}
+			if (nBit >= 31) {
+				result = (number > 0) ? 0 : 1;
 			}
 		}
 		return result;

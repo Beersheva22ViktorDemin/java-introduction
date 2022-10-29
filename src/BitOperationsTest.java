@@ -5,10 +5,11 @@ import org.junit.jupiter.api.Test;
 
 class BitOperationsTest {	
 	@Test
-	void getBitValueTest() {
+	void getBitValueTest() {		
 		long number = 1; // 1
 		assertEquals(1, BitOperations.getBitValue(number, 0));
 		assertEquals(0, BitOperations.getBitValue(number, 1));
+		assertEquals(0, BitOperations.getBitValue(number, 2));
 		assertEquals(0, BitOperations.getBitValue(number, 45));
 		assertEquals(0, BitOperations.getBitValue(number, 63));
 		assertEquals(-1, BitOperations.getBitValue(number, 64));
@@ -47,10 +48,12 @@ class BitOperationsTest {
 		assertEquals(1, BitOperations.getBitValue(number, 21));
 		assertEquals(0, BitOperations.getBitValue(number, 22));
 		assertEquals(0, BitOperations.getBitValue(number, 23));
-		//current code doesn't work correctly
-//		assertEquals(0, BitOperations.getBitValue(number, 32));
-//		assertEquals(0, BitOperations.getBitValue(number, 45));
-//		assertEquals(0, BitOperations.getBitValue(number, 63));
+		assertEquals(0, BitOperations.getBitValue(number, 29));
+		assertEquals(0, BitOperations.getBitValue(number, 30)); //mask = 1073741824
+		assertEquals(0, BitOperations.getBitValue(number, 31)); //mask = -2147483648
+		assertEquals(0, BitOperations.getBitValue(number, 32)); //mask = 1
+		assertEquals(0, BitOperations.getBitValue(number, 45));
+		assertEquals(0, BitOperations.getBitValue(number, 63));
 		assertEquals(-1, BitOperations.getBitValue(number, 64));
 		assertEquals(-1, BitOperations.getBitValue(number, 65));
 		
@@ -60,6 +63,28 @@ class BitOperationsTest {
 		assertEquals(0, BitOperations.getBitValue(number, 1));
 		assertEquals(1, BitOperations.getBitValue(number, 2));
 		assertEquals(-1, BitOperations.getBitValue(number, 100));
+		
+		number = Integer.MAX_VALUE; //0111 1111 1111 1111 1111 1111 1111 1111
+		assertEquals(1, BitOperations.getBitValue(number, 0));
+		assertEquals(1, BitOperations.getBitValue(number, 30));
+		assertEquals(0, BitOperations.getBitValue(number, 31));
+		
+		//-2147483648
+		number = Integer.MAX_VALUE + 1; //11111111111111111111111111111111 1000 0000 0000 0000 0000 0000 0000 0000
+		assertEquals(0, BitOperations.getBitValue(number, 0));
+		assertEquals(0, BitOperations.getBitValue(number, 30));
+		assertEquals(1, BitOperations.getBitValue(number, 31));
+		
+		number = -1; //1111111111111111111111111111111111111111111111111111111111111111
+		assertEquals(1, BitOperations.getBitValue(number, 0));
+		assertEquals(1, BitOperations.getBitValue(number, 30));
+		assertEquals(1, BitOperations.getBitValue(number, 31));
+		
+		number = -2; //1111111111111111111111111111111111111111111111111111111111111110
+		assertEquals(0, BitOperations.getBitValue(number, 0));
+		assertEquals(1, BitOperations.getBitValue(number, 1));
+		assertEquals(1, BitOperations.getBitValue(number, 30));
+		assertEquals(1, BitOperations.getBitValue(number, 31));
 	}
 	
 	@Test
