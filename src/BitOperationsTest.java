@@ -127,13 +127,40 @@ class BitOperationsTest {
 		assertEquals(0x3ab7f7, BitOperations.invertBitValue(number, 1));
 		assertEquals(0xbab7f5, BitOperations.invertBitValue(number, 23));
 		
-		
 		assertEquals(-1, BitOperations.invertBitValue(number, 64));
 		assertEquals(-1, BitOperations.invertBitValue(number, 65));
 		
 		//checks from lesson
 		assertEquals(0x3ab7d5, BitOperations.invertBitValue(number, 5));
 		assertEquals(0x3ab7f4, BitOperations.invertBitValue(number, 0));
+	
+		number = 0;
+		assertEquals(1, BitOperations.invertBitValue(number, 0));
+		assertEquals(Long.MIN_VALUE, BitOperations.invertBitValue(number, 63)); //1000000000000000000000000000000000000000000000000000000000000000
+		assertEquals(Long.MIN_VALUE >> 1 ^ Long.MIN_VALUE, BitOperations.invertBitValue(number, 62)); //0100000000000000000000000000000000000000000000000000000000000000
+		assertEquals(Long.MIN_VALUE >> 2 ^ Long.MIN_VALUE >> 1, BitOperations.invertBitValue(number, 61));
+//		long result = (Long.MIN_VALUE >> 2 ^ Long.MIN_VALUE >> 1);
+//		System.out.println(result);
+//		System.out.println(Long.toBinaryString(result));
+//		System.out.println(Long.toBinaryString(Long.MIN_VALUE));
+//		result = Long.MIN_VALUE;
+//		System.out.println(result);
+//		System.out.println(Long.toBinaryString(result));
+//		result = 0 - (Long.MIN_VALUE >> (63 - 63));
+//		System.out.println("mask: " + result);
+//		System.out.println(Long.toBinaryString(result));
+		
+		number = 1;
+		assertEquals(0, BitOperations.invertBitValue(number, 0));
+//		assertEquals(0, BitOperations.invertBitValue(number, 0));
+//		assertEquals(Long.MIN_VALUE >> 1, BitOperations.invertBitValue(number, 62)); //1100000000000000000000000000000000000000000000000000000000000000
+//		long result = BitOperations.invertBitValue(number, 63);
+//		System.out.println(result);
+//		System.out.println(Long.toBinaryString(result));
+		
+		number = 2; //10
+		assertEquals(3, BitOperations.invertBitValue(number, 0));
+		assertEquals(0, BitOperations.invertBitValue(number, 1));
 	}
 
 }
