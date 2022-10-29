@@ -136,6 +136,7 @@ class BitOperationsTest {
 	
 		number = 0;
 		assertEquals(1, BitOperations.invertBitValue(number, 0));
+		assertEquals(2, BitOperations.invertBitValue(number, 1));
 		assertEquals(Long.MIN_VALUE, BitOperations.invertBitValue(number, 63)); //1000000000000000000000000000000000000000000000000000000000000000
 		assertEquals(Long.MIN_VALUE >> 1 ^ Long.MIN_VALUE, BitOperations.invertBitValue(number, 62)); //0100000000000000000000000000000000000000000000000000000000000000
 		assertEquals(Long.MIN_VALUE >> 2 ^ Long.MIN_VALUE >> 1, BitOperations.invertBitValue(number, 61));
@@ -152,12 +153,9 @@ class BitOperationsTest {
 		
 		number = 1;
 		assertEquals(0, BitOperations.invertBitValue(number, 0));
-//		assertEquals(0, BitOperations.invertBitValue(number, 0));
-//		assertEquals(Long.MIN_VALUE >> 1, BitOperations.invertBitValue(number, 62)); //1100000000000000000000000000000000000000000000000000000000000000
-//		long result = BitOperations.invertBitValue(number, 63);
-//		System.out.println(result);
-//		System.out.println(Long.toBinaryString(result));
-		
+		assertEquals(3, BitOperations.invertBitValue(number, 1));
+		assertEquals(Long.MIN_VALUE + 1, BitOperations.invertBitValue(number, 63)); //1000000000000000000000000000000000000000000000000000000000000001
+
 		number = 2; //10
 		assertEquals(3, BitOperations.invertBitValue(number, 0));
 		assertEquals(0, BitOperations.invertBitValue(number, 1));
