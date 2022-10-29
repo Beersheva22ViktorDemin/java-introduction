@@ -31,6 +31,7 @@ public class BitOperations {
 		long result = -1;
 		if (isValidNbit(nBit)) {
 			long mask = getMask(nBit);
+			//TODO clean method, mask is ok now, so we don't need "if" here + add some tests
 			if (value) {
 				result = number | mask;
 				// 0011 1010 1011 0111 1111 0101
