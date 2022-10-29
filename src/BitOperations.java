@@ -20,8 +20,7 @@ public class BitOperations {
 				} else {
 					result = 1;
 				}
-			}
-			if (nBit >= 31) {
+			} else {
 				result = (number > 0) ? 0 : 1;
 			}
 		}
