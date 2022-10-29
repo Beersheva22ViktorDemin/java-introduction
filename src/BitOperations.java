@@ -1,9 +1,8 @@
 /**
- * nBit value [0, 63]
- * return -1 in the case of wrong nBit value
+ * nBit value [0, 63] return -1 in the case of wrong nBit value
  */
 public class BitOperations {
-	
+
 	/**
 	 * @param number - any number
 	 * @param nBit   - number of bit
@@ -12,16 +11,11 @@ public class BitOperations {
 	public static int getBitValue(long number, int nBit) {
 		int result = -1;
 		if (isValidNbit(nBit)) {
-			long mask;
-			if (nBit < 31) { //TODO find more beautiful solution
-				mask = 1 << nBit; // all bits are 0 except bit number nBit // 1 << 2 100, 1 << 3 1000
-				if ((number & mask) == 0) {
-					result = 0;
-				} else {
-					result = 1;
-				}
+			long mask = getMask(nBit);
+			if ((number & mask) == 0) {
+				result = 0;
 			} else {
-				result = (number > 0) ? 0 : 1;
+				result = 1;
 			}
 		}
 		return result;
@@ -36,16 +30,15 @@ public class BitOperations {
 	public static long setBitValue(long number, int nBit, boolean value) {
 		long result = -1;
 		if (isValidNbit(nBit)) {
-			//TODO handle case nBit >= 31
-			long mask = 1 << nBit; //0010
+			long mask = getMask(nBit);
 			if (value) {
 				result = number | mask;
-				//0011 1010 1011 0111 1111 0101
-				//0000 0000 0000 0000 0000 0010
+				// 0011 1010 1011 0111 1111 0101
+				// 0000 0000 0000 0000 0000 0010
 			} else {
 				result = number & ~mask;
-				//0011 1010 1011 0111 1111 0101
-				//1111 1111 1111 1111 1111 1101 <- //0000 0000 0000 0000 0000 0010
+				// 0011 1010 1011 0111 1111 0101
+				// 1111 1111 1111 1111 1111 1101 <- //0000 0000 0000 0000 0000 0010
 			}
 		}
 		return result;
@@ -55,17 +48,17 @@ public class BitOperations {
 	 *
 	 * @param number - any number
 	 * @param nBit   - bit number
-	 * @return new number in which nBit will be inverse (old value - 1, new value - 0)
+	 * @return new number in which nBit will be inverse (old value - 1, new value -
+	 *         0)
 	 */
 	public static long invertBitValue(long number, int nBit) {
 		long result = -1;
 		if (isValidNbit(nBit)) {
-			//TODO handle case nBit >= 31
-			long mask = 1 << nBit;
-			//0101 //0100
-			//0001 //0001
-			//^
-			//0100 //0101
+			long mask = getMask(nBit);
+			// 0101 //0100
+			// 0001 //0001
+			// ^
+			// 0100 //0101
 			result = number ^ mask;
 		}
 		return result;
@@ -73,6 +66,14 @@ public class BitOperations {
 
 	private static boolean isValidNbit(int nBit) {
 		return nBit < 64 && nBit >= 0;
+	}
+	
+	/**
+	 * @param nBit
+	 * @return mask example 0000 0010 for nBit = 2
+	 */
+	private static long getMask(int nBit) {
+		return - (Long.MIN_VALUE >> (63 - nBit));
 	}
 
 }
