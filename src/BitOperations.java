@@ -13,7 +13,7 @@ public class BitOperations {
 		int result = -1;
 		if (isValidNbit(nBit)) {
 			long mask;
-			if (nBit < 31) {
+			if (nBit < 31) { //TODO find more beautiful solution
 				mask = 1 << nBit; // all bits are 0 except bit number nBit // 1 << 2 100, 1 << 3 1000
 				if ((number & mask) == 0) {
 					result = 0;
@@ -36,6 +36,7 @@ public class BitOperations {
 	public static long setBitValue(long number, int nBit, boolean value) {
 		long result = -1;
 		if (isValidNbit(nBit)) {
+			//TODO handle case nBit >= 31
 			long mask = 1 << nBit; //0010
 			if (value) {
 				result = number | mask;
@@ -59,6 +60,7 @@ public class BitOperations {
 	public static long invertBitValue(long number, int nBit) {
 		long result = -1;
 		if (isValidNbit(nBit)) {
+			//TODO handle case nBit >= 31
 			long mask = 1 << nBit;
 			//0101 //0100
 			//0001 //0001
