@@ -74,7 +74,7 @@ public class BitOperations {
 	 * @return mask example 0000 0010 for nBit = 2
 	 */
 	private static long getMask(int nBit) {
-		return - (Long.MIN_VALUE >> (63 - nBit));
+		return 1L << nBit;
 	}
 
 }
