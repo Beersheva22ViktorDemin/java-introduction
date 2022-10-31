@@ -64,6 +64,24 @@ public class BitOperations {
 		}
 		return result;
 	}
+	
+	public static int log2(long number) {
+		int result = -1;
+		
+		if (number < 0) {
+			result = 0; //Because log2 of negative number is less than 1
+		}
+
+		while (number > 0) {
+//			System.out.println(Long.toBinaryString(number));
+			if (number > 0) {
+				number = number >> 1;
+			}
+			result++;
+		}
+
+		return result;
+	}
 
 	private static boolean isValidNbit(int nBit) {
 		return nBit < 64 && nBit >= 0;

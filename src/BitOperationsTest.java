@@ -160,5 +160,18 @@ class BitOperationsTest {
 		assertEquals(3, BitOperations.invertBitValue(number, 0));
 		assertEquals(0, BitOperations.invertBitValue(number, 1));
 	}
+	
+	@Test
+	void log2Test() {
+		assertEquals(-1, BitOperations.log2(0));
+		assertEquals(0, BitOperations.log2(1));
+		assertEquals(1, BitOperations.log2(2));
+		assertEquals(1, BitOperations.log2(3));
+		assertEquals(2, BitOperations.log2(4));
+		assertEquals(30, BitOperations.log2(Integer.MAX_VALUE));
+		assertEquals(0, BitOperations.log2(-1));
+		assertEquals(0, BitOperations.log2(Integer.MAX_VALUE+1)); //Because it is a negative number
+	}
+	
 
 }
