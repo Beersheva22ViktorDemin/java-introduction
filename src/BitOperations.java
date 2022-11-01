@@ -67,10 +67,6 @@ public class BitOperations {
 	
 	public static int log2(long number) {
 		int result = -1;
-		
-		if (number < 0) {
-			result = 0; //Because log2 of negative number is less than 1
-		}
 
 		while (number > 0) {
 //			System.out.println(Long.toBinaryString(number));
