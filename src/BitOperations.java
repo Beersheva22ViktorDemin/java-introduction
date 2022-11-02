@@ -83,9 +83,17 @@ public class BitOperations {
 		if (number <= 0) {
 			return false;
 		}
-		int log = log2(number);
-		long mask = setBitValue(0, log, true);
-		if ((number ^ mask) == 0) {
+		
+		//1111 - is not multiply power 2
+		//1110
+		//1110
+		
+		//0100 - is multiply power 2
+		//0011
+		//0000
+
+		
+		if ((number & (number - 1)) == 0) {
 			return true;
 		}
 
