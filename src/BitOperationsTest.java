@@ -173,5 +173,22 @@ class BitOperationsTest {
 		assertEquals(-1, BitOperations.log2(Integer.MAX_VALUE + 1)); //Because it is a negative number
 	}
 	
+	
+	@Test
+	void isMultiplyPower2Test() {
+		assertEquals(false, BitOperations.isMultiplyPower2(0));
+		assertEquals(true, BitOperations.isMultiplyPower2(1));
+		assertEquals(true, BitOperations.isMultiplyPower2(2));
+		assertEquals(false, BitOperations.isMultiplyPower2(3));
+		assertEquals(true, BitOperations.isMultiplyPower2(4));
+		assertEquals(false, BitOperations.isMultiplyPower2(5));
+		assertEquals(false, BitOperations.isMultiplyPower2(6));
+		assertEquals(false, BitOperations.isMultiplyPower2(7));
+		assertEquals(true, BitOperations.isMultiplyPower2(8));
+		assertEquals(false, BitOperations.isMultiplyPower2(Integer.MAX_VALUE));
+		assertEquals(false, BitOperations.isMultiplyPower2(-1));
+		assertEquals(false, BitOperations.isMultiplyPower2(Integer.MAX_VALUE + 1)); //Because it is a negative number
+	}
+	
 
 }

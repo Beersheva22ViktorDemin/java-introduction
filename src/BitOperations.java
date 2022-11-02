@@ -78,6 +78,19 @@ public class BitOperations {
 
 		return result;
 	}
+	
+	public static boolean isMultiplyPower2(long number) {
+		if (number <= 0) {
+			return false;
+		}
+		int log = log2(number);
+		long mask = setBitValue(0, log, true);
+		if ((number ^ mask) == 0) {
+			return true;
+		}
+
+		return false;
+	}
 
 	private static boolean isValidNbit(int nBit) {
 		return nBit < 64 && nBit >= 0;
