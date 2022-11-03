@@ -190,5 +190,37 @@ class BitOperationsTest {
 		assertEquals(false, BitOperations.isMultiplyPower2(Integer.MAX_VALUE + 1)); //Because it is a negative number
 	}
 	
-
+	@Test
+	void leadingZerosTest() {
+		assertEquals(64, BitOperations.leadingZeros(0));
+		assertEquals(63, BitOperations.leadingZeros(1));
+		assertEquals(62, BitOperations.leadingZeros(2));
+		assertEquals(62, BitOperations.leadingZeros(3));
+		assertEquals(61, BitOperations.leadingZeros(4));
+		assertEquals(61, BitOperations.leadingZeros(5));
+		assertEquals(61, BitOperations.leadingZeros(6));
+		assertEquals(60, BitOperations.leadingZeros(8));
+		assertEquals(64 - 31, BitOperations.leadingZeros(Integer.MAX_VALUE - 1));
+		assertEquals(64 - 31, BitOperations.leadingZeros(Integer.MAX_VALUE));
+		assertEquals(0, BitOperations.leadingZeros(Long.MIN_VALUE));
+		assertEquals(0, BitOperations.leadingZeros(-1));
+	}
+	
+	@Test
+	void onesInNumberTest() {
+		assertEquals(0, BitOperations.onesInNumber(0));
+		assertEquals(1, BitOperations.onesInNumber(1));
+		assertEquals(1, BitOperations.onesInNumber(2));
+		assertEquals(2, BitOperations.onesInNumber(3));
+		assertEquals(1, BitOperations.onesInNumber(4));
+		assertEquals(2, BitOperations.onesInNumber(5));
+		assertEquals(2, BitOperations.onesInNumber(6));
+		assertEquals(3, BitOperations.onesInNumber(7));
+		assertEquals(1, BitOperations.onesInNumber(8));
+		assertEquals(30, BitOperations.onesInNumber(Integer.MAX_VALUE - 1));
+		assertEquals(31, BitOperations.onesInNumber(Integer.MAX_VALUE));
+		assertEquals(64 - 31, BitOperations.onesInNumber(Integer.MAX_VALUE + 1));
+		assertEquals(64 - 31 + 1, BitOperations.onesInNumber(Integer.MAX_VALUE + 2));
+		assertEquals(64, BitOperations.onesInNumber(-1));
+	}
 }

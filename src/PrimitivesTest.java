@@ -17,9 +17,48 @@ class PrimitivesTest {
 					assertEquals(i, getFirstNumber(a));
 				}
 			}
-
 		}
+	}
+
+	@Test
+	void countDigitsTest() {
+		assertEquals(1, Numbers.countDigits(0));
+		assertEquals(1, Numbers.countDigits(1));
+		assertEquals(1, Numbers.countDigits(9));
+		assertEquals(1, Numbers.countDigits(9));
+		assertEquals(2, Numbers.countDigits(10));
+		assertEquals(2, Numbers.countDigits(11));
+		assertEquals(1, Numbers.countDigits(-1));
+		assertEquals(1, Numbers.countDigits(-9));
+		assertEquals(2, Numbers.countDigits(-11));
+		assertEquals(10, Numbers.countDigits(Integer.MAX_VALUE));
+		assertEquals(10, Numbers.countDigits(Integer.MAX_VALUE + 1L));
+	}
 	
+
+	@Test
+	void getSumOfDigitsTest() {
+		assertEquals(0, Numbers.getSumOfDigits(0));
+		assertEquals(1, Numbers.getSumOfDigits(1));
+		assertEquals(3, Numbers.getSumOfDigits(12));
+		assertEquals(6, Numbers.getSumOfDigits(123));
+		assertEquals(1, Numbers.getSumOfDigits(1000));
+		assertEquals(0, Numbers.getSumOfDigits(-1000)); //method doesn't support negative numbers
+	}
+
+	@Test
+	void isHappyNumberTest() {
+		assertEquals(false, Numbers.isHappyNumber(0));
+		assertEquals(false, Numbers.isHappyNumber(1));
+		assertEquals(false, Numbers.isHappyNumber(11));
+		assertEquals(false, Numbers.isHappyNumber(111));
+		assertEquals(false, Numbers.isHappyNumber(1111));
+		assertEquals(false, Numbers.isHappyNumber(11111));
+		assertEquals(true, Numbers.isHappyNumber(111111));
+		assertEquals(false, Numbers.isHappyNumber(1111111));
+		assertEquals(false, Numbers.isHappyNumber(-1));
+		assertEquals(false, Numbers.isHappyNumber(-1111111));
+		assertEquals(false, Numbers.isHappyNumber(-111111)); //method doesn't support negative numbers
 	}
 
 	private int getThirdNumber(int number) {
@@ -28,11 +67,9 @@ class PrimitivesTest {
 
 	private int getSecondNumber(int number) {
 		return (number / 10) % 10;
-
 	}
 
 	private int getFirstNumber(int number) {
 		return (number / 100) % 10;
-		
 	}
 }

@@ -2,6 +2,8 @@
  * nBit value [0, 63] return -1 in the case of wrong nBit value
  */
 public class BitOperations {
+	
+	private static final int N_BITS = 64;
 
 	/**
 	 * @param number - any number
@@ -31,7 +33,8 @@ public class BitOperations {
 		long result = -1;
 		if (isValidNbit(nBit)) {
 			long mask = getMask(nBit);
-			//TODO clean method, mask is ok now, so we don't need "if" here + add some tests
+			// TODO clean method, mask is ok now, so we don't need "if" here + add some
+			// tests
 			if (value) {
 				result = number | mask;
 				// 0011 1010 1011 0111 1111 0101
@@ -64,7 +67,7 @@ public class BitOperations {
 		}
 		return result;
 	}
-	
+
 	public static int log2(long number) {
 		int result = -1;
 
@@ -78,21 +81,20 @@ public class BitOperations {
 
 		return result;
 	}
-	
+
 	public static boolean isMultiplyPower2(long number) {
 		if (number <= 0) {
 			return false;
 		}
-		
-		//1111 - is not multiply power 2
-		//1110
-		//1110
-		
-		//0100 - is multiply power 2
-		//0011
-		//0000
 
-		
+		// 1111 - is not multiply power 2
+		// 1110
+		// 1110
+
+		// 0100 - is multiply power 2
+		// 0011
+		// 0000
+
 		if ((number & (number - 1)) == 0) {
 			return true;
 		}
@@ -100,10 +102,30 @@ public class BitOperations {
 		return false;
 	}
 
+	public static int leadingZeros(long number) {
+		int res = 0;
+		int nBit = N_BITS - 1;
+		while (nBit >= 0 && getBitValue(number, nBit) == 0) {
+			nBit--;
+			res++;
+		}
+		return res;
+	}
+
+	public static int onesInNumber(long number) {
+		int res = 0;
+		for (int i = 0; i < N_BITS; i++) {
+			if (getBitValue(number, i) == 1) {
+				res++;
+			}
+		}
+		return res;
+	}
+
 	private static boolean isValidNbit(int nBit) {
 		return nBit < 64 && nBit >= 0;
 	}
-	
+
 	/**
 	 * @param nBit
 	 * @return mask example 0000 0010 for nBit = 2
