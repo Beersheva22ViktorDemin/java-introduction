@@ -15,37 +15,25 @@ public class SportLotoAppl {
 //				newValue = getRandomInt(1, 6); //for tests
 				newValue = getRandomInt(1, 49);
 			} while (isValueExists(arraySimulator, newValue));
-			arraySimulator = saveValue(arraySimulator, i, newValue);
+			arraySimulator = saveValue(arraySimulator, newValue);
 			System.out.print(newValue + " ");
 		}
-
 	}
 
 	public static int getRandomInt(int min, int max) {
 		return (int)(min + Math.random() * (max - min + 1));
 	}
 	
-	public static long saveValue(long arraySimulator, int index, int value) {
-		arraySimulator += pow10(2 * index)  * value;
+	public static long saveValue(long arraySimulator, int value) {
+		arraySimulator = BitOperations.setBitValue(arraySimulator, value, true);
 		
 		return arraySimulator;
 	}
 	
 	public static boolean isValueExists(long arraySimulator, int value) {
 		boolean result = false;
-		while (arraySimulator > 0) {
-			if (arraySimulator % 100 == value) {
-				result = true;
-			}
-			arraySimulator = arraySimulator / 100;
-		}
-		return result;
-	}
-	
-	public static long pow10(int exponent) {
-		long result = 1;
-		for (int i = 0; i < exponent; i++) {
-			result *= 10;
+		if (BitOperations.getBitValue(arraySimulator, value) > 0) {
+			result = true;
 		}
 		return result;
 	}
