@@ -8,33 +8,30 @@ public class SportLotoAppl {
 	 * arrays
 	 */
 	public static void main(String[] args) {	
-		int newValue = 0;
-		long arraySimulator = INIT;
+		int value = 0;
+		long storage = INIT;
 		for (int i = 0; i < 6; i++) {
-			do {
-//				newValue = getRandomInt(1, 6); //for tests
-				newValue = getRandomInt(1, 49);
-			} while (isValueExists(arraySimulator, newValue));
-			arraySimulator = saveValue(arraySimulator, newValue);
-			System.out.print(newValue + " ");
+			value = getUniqueRandomValue(storage);
+			storage = saveValue(storage, value);
+			System.out.print(value + " ");
 		}
+	}
+
+	private static int getUniqueRandomValue(long storage) {
+		int value;
+		do {
+			value = getRandomInt(1, 49);
+		} while (BitOperations.getBitValue(storage, value) > 0);
+		return value;
 	}
 
 	public static int getRandomInt(int min, int max) {
 		return (int)(min + Math.random() * (max - min + 1));
 	}
 	
-	public static long saveValue(long arraySimulator, int value) {
-		arraySimulator = BitOperations.setBitValue(arraySimulator, value, true);
+	public static long saveValue(long storage, int value) {
+		storage = BitOperations.setBitValue(storage, value, true);
 		
-		return arraySimulator;
-	}
-	
-	public static boolean isValueExists(long arraySimulator, int value) {
-		boolean result = false;
-		if (BitOperations.getBitValue(arraySimulator, value) > 0) {
-			result = true;
-		}
-		return result;
+		return storage;
 	}
 }
