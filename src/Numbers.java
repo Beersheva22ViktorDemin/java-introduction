@@ -33,4 +33,21 @@ public class Numbers {
 		}
 		return result;
 	}
+	
+	public static int[] getDigits(int number) {
+		int res[] = new int[countDigits(number)];
+		for(int i = res.length - 1; i >= 0; i--) {
+			res[i] = number % 10;
+			number /= 10;
+		}
+		return res;
+	}
+	
+	public static int getNumberFromDigits(int[] digits) {
+		int res = 0;
+		for(int i = 0; i < digits.length; i++) {
+			res = res * 10 + digits[i];
+		}
+		return res;
+	}
 }

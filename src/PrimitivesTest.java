@@ -34,7 +34,6 @@ class PrimitivesTest {
 		assertEquals(10, Numbers.countDigits(Integer.MAX_VALUE));
 		assertEquals(10, Numbers.countDigits(Integer.MAX_VALUE + 1L));
 	}
-	
 
 	@Test
 	void getSumOfDigitsTest() {
@@ -43,7 +42,7 @@ class PrimitivesTest {
 		assertEquals(3, Numbers.getSumOfDigits(12));
 		assertEquals(6, Numbers.getSumOfDigits(123));
 		assertEquals(1, Numbers.getSumOfDigits(1000));
-		assertEquals(0, Numbers.getSumOfDigits(-1000)); //method doesn't support negative numbers
+		assertEquals(0, Numbers.getSumOfDigits(-1000)); // method doesn't support negative numbers
 	}
 
 	@Test
@@ -58,7 +57,20 @@ class PrimitivesTest {
 		assertEquals(false, Numbers.isHappyNumber(1111111));
 		assertEquals(false, Numbers.isHappyNumber(-1));
 		assertEquals(false, Numbers.isHappyNumber(-1111111));
-		assertEquals(false, Numbers.isHappyNumber(-111111)); //method doesn't support negative numbers
+		assertEquals(false, Numbers.isHappyNumber(-111111)); // method doesn't support negative numbers
+	}
+
+	@Test
+	void getDigitsTest() {
+		int expected[] = { 1, 2, 3, 4 };
+		assertArrayEquals(expected, Numbers.getDigits(1234));
+	}
+
+	@Test
+	void getNumberFromDigitsTest() {
+		int expectedNumber = 1234;
+
+		assertEquals(expectedNumber, Numbers.getNumberFromDigits(new int[] { 1, 2, 3, 4 }));
 	}
 
 	private int getThirdNumber(int number) {
