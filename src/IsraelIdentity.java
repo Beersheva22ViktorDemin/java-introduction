@@ -1,4 +1,6 @@
 public class IsraelIdentity {
+	public static final int COUNT_OF_DIGITS = 9;
+	
 	/**
 	 * 
 	 * @param id
@@ -10,8 +12,13 @@ public class IsraelIdentity {
 	 *         2
 	 */
 	public static boolean verify(int id) {
-		// TODO
-		return false;
+		int[] digits = Numbers.getDigits(id);
+		if (digits.length != COUNT_OF_DIGITS) {
+			return false;
+		}
+		int sum = getLuhnSum(digits);
+		
+		return sum % 10 == 0;
 	}
 
 	/**
@@ -20,7 +27,33 @@ public class IsraelIdentity {
 	 *         than 9 iterations
 	 */
 	public static int generateRandomId() {
-		// TODO
-		return 0;
+		int min = (int) Math.pow(10, (COUNT_OF_DIGITS - 2));
+		int max = (int) Math.pow(10, COUNT_OF_DIGITS - 1) - 1;
+		int number = SportLotoAppl.getRandomInt(min, max);
+		
+		
+		return number * 10 + getChecksum(number);
+	}
+	
+	public static int getChecksum(int number) {
+		int[] digits = Numbers.getDigits(number);
+		int sum = getLuhnSum(digits);
+		
+		return sum % 10 != 0 ? 10 - sum % 10 : 0;
+	}
+	
+	private static int getLuhnSum(int[] digits) {
+		int sum = 0, term, doubleTerm;
+		for(int i = 0; i < digits.length; i++) {
+			if (i % 2 == 0) {
+				term = digits[i];
+			} else {
+				doubleTerm = digits[i] * 2;
+				term = doubleTerm > 9 ? Numbers.getSumOfDigits(doubleTerm) : doubleTerm;
+			}
+			sum += term;
+		}
+		
+		return sum;
 	}
 }
