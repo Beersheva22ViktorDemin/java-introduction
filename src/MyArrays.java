@@ -45,28 +45,6 @@ public class MyArrays {
 	public static int[] insertSorted(int arraySorted[], int number) {
 		// use the method binarySearch of the standard class Arrays
 		// use the method arraycopy of the standard class System
-		int[] result = new int[arraySorted.length + 1];
-		int index = Arrays.binarySearch(arraySorted, number);
-		if (index < 0) {
-			//-(insertion point) - 1)
-			index = -index - 1;
-		}
-		System.arraycopy(arraySorted, 0, result, 0, index);
-		result[index] = number;
-		System.arraycopy(arraySorted, index, result, index + 1, arraySorted.length - index);
-		
-		return result;
-	}
-	
-	/**
-	 * 
-	 * @param arraySorted - sorted array
-	 * @param number
-	 * @return new array with inserted number at an index for keeping array sorted
-	 */
-	public static int[] insertSorted(int arraySorted[], int number) {
-		// use the method binarySearch of the standard class Arrays
-		// use the method arraycopy of the standard class System
 		int index = Arrays.binarySearch(arraySorted, number);
 		if (index < 0) {
 			index = -(index + 1);
@@ -74,6 +52,7 @@ public class MyArrays {
 		return insertAtIndex(arraySorted, number, index);
 		
 	}
+	
 	private static int[] insertAtIndex(int[] array, int number, int index) {
 		int res[] = new int[array.length + 1];
 		System.arraycopy(array, 0, res, 0, index);
@@ -81,6 +60,7 @@ public class MyArrays {
 		System.arraycopy(array, index, res, index + 1, array.length - index);
 		return res;
 	}
+	
 	/**
 	 * 
 	 * @param arraySorted
