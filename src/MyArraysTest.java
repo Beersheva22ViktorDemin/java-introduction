@@ -92,4 +92,22 @@ class MyArraysTest {
 		MyArrays.bubbleSort(array);
 		assertArrayEquals(new int[] { 0, 1, 2, 3, 5 }, array);
 	}
+	
+	@Test
+	void isSum2Test() {
+		assertTrue(MyArrays.isSum2(new short[] { 1, 2 }, (short) 3));
+		assertFalse(MyArrays.isSum2(new short[] { 1, 2 }, (short) 5));
+		assertFalse(MyArrays.isSum2(new short[] { }, (short) 3));
+		assertFalse(MyArrays.isSum2(new short[] { 0, 0, 0 }, (short) 3));
+		assertFalse(MyArrays.isSum2(new short[] { 1, 1, 1 }, (short) 3));
+		
+		assertFalse(MyArrays.isSum2(new short[] { 1, 2, 2, 10 }, (short) 1));
+		assertTrue(MyArrays.isSum2(new short[] { 1, 2, 2, 10 }, (short) 3));
+		assertTrue(MyArrays.isSum2(new short[] { 1, 2, 2, 10 }, (short) 4));
+		assertFalse(MyArrays.isSum2(new short[] { 1, 2, 2, 10 }, (short) 5));
+		assertTrue(MyArrays.isSum2(new short[] { 1, 2, 2, 10 }, (short) 3));
+		assertTrue(MyArrays.isSum2(new short[] { 1, 2, 2, 10 }, (short) 11));
+		assertTrue(MyArrays.isSum2(new short[] { 1, 2, 2, 10 }, (short) 12));
+		assertFalse(MyArrays.isSum2(new short[] { 1, 2, 2, 10 }, (short) 13));
+	}
 }

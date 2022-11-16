@@ -181,6 +181,19 @@ public class MyArrays {
 	 * @return true if array contains two numbers, sum of which equals a given sum
 	 */
 	public static boolean isSum2(short array[], short sum) {
+		//assume that each element > 0
+		int buffer = 0;
+		for (int i = 0; i < array.length; i++) {
+			for (int j = 0; j < array.length; j++) {
+				if (j != i) {
+					buffer = array[i] + array[j];
+					if (buffer == sum) {
+						return true;
+					}
+				}	
+			}
+		}
+		
 		return false;
 	}
 }
