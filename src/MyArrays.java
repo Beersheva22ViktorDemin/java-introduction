@@ -182,17 +182,12 @@ public class MyArrays {
 	 */
 	public static boolean isSum2(short array[], short sum) {
 		//assume that each element > 0
-		int buffer = 0;
+		short[] buffer = new short[Short.MAX_VALUE];
 		for (int i = 0; i < array.length; i++) {
-			if (array[i] > 0 && sum % array[i] == 0) {
-				for (int j = 0; j < array.length; j++) {
-					if (j != i) {
-						buffer = array[i] + array[j];
-						if (buffer == sum) {
-							return true;
-						}
-					}	
-				}
+			if (buffer[array[i]] > 0) {
+				return true;
+			} else if (sum - array[i] > 0) {
+				buffer[sum - array[i]] = 1;
 			}
 		}
 		
