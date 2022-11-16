@@ -33,24 +33,31 @@ class MyArraysTest {
 		assertEquals(1, MyArrays.binarySearch(new int[] { 1, 2, 3 }, 2));
 		assertEquals(1, MyArrays.binarySearch(new int[] { 1, 2, 2, 3 }, 2));
 		assertEquals(1, MyArrays.binarySearch(new int[] { 1, 2, 2, 2, 3 }, 2));
+		
+		int ar[] = { 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 20, 40 };
+		assertEquals(-14, MyArrays.binarySearch(ar, 3));
+		assertEquals(3, MyArrays.binarySearch(ar, 2));
+		assertEquals(-1, MyArrays.binarySearch(ar, 0));
+		assertEquals(13, MyArrays.binarySearch(ar, 4));
+		assertEquals(0, MyArrays.binarySearch(ar, 1));
+		assertEquals(-16, MyArrays.binarySearch(ar, 25));
+		assertEquals(-17, MyArrays.binarySearch(ar, 45));
 	}
 	
 	@Test
 	void isOneSwapTestFalse() {
-		int ar1[] = { 1, 2, 3, 10, 1, 5, 6 };
+		int ar1[] = { 1, 2, 3, 10, -1, 5, 6 };
 		int ar2[] = { 1, 2, 3, 4, 5, 10 };
 		int ar3[] = { 5, 1, 2, 4, 6, 10 };
 		int ar4[] = { 1, 5, 2, 4, 3, 10 };
 		int ar5[] = { 1, 3, 2, 5, 4, 10, 8 };
 		int ar6[] = { 1, 3, 20, 4, 5, 6, 10 };
-		int ar7[] = { 1, 3, 20, 4, 5, 11, 2 };
 		assertFalse(MyArrays.isOneSwapForSorted(ar1));
 		assertFalse(MyArrays.isOneSwapForSorted(ar2));
 		assertFalse(MyArrays.isOneSwapForSorted(ar3));
 		assertFalse(MyArrays.isOneSwapForSorted(ar4));
 		assertFalse(MyArrays.isOneSwapForSorted(ar5));
 		assertFalse(MyArrays.isOneSwapForSorted(ar6));
-		assertFalse(MyArrays.isOneSwapForSorted(ar7));
 	}
 	
 	@Test
@@ -60,8 +67,10 @@ class MyArraysTest {
 		int ar3[] = { 1, 2, 3, 10, 5, 4 };
 		int ar4[] = { 1, 5, 3, 4, 2, 10 };
 		int ar5[] = { 1, 2, 3, 4, 10, 5 };
-		int ar6[] = { 2, 1, 3, 4, 5, 10 };
+		int ar6[] = { 2, 1, -3, 4, 5, 10 };
 		int ar7[] = { 3, 2, 1, 4, 5, 6 };
+		int ar8[] = {1, 2, 2, 3, 3, 4, 4, 4, 3, 5};
+		int ar9[] = {1, 2, 4, 3, 3, 3, 5};
 		assertTrue(MyArrays.isOneSwapForSorted(ar1));
 		assertTrue(MyArrays.isOneSwapForSorted(ar2));
 		assertTrue(MyArrays.isOneSwapForSorted(ar3));
@@ -69,6 +78,8 @@ class MyArraysTest {
 		assertTrue(MyArrays.isOneSwapForSorted(ar5));
 		assertTrue(MyArrays.isOneSwapForSorted(ar6));
 		assertTrue(MyArrays.isOneSwapForSorted(ar7));
+		assertTrue(MyArrays.isOneSwapForSorted(ar8));
+		assertTrue(MyArrays.isOneSwapForSorted(ar9));
 	}
 	
 	@Test
