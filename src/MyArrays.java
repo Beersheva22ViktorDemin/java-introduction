@@ -184,13 +184,15 @@ public class MyArrays {
 		//assume that each element > 0
 		int buffer = 0;
 		for (int i = 0; i < array.length; i++) {
-			for (int j = 0; j < array.length; j++) {
-				if (j != i) {
-					buffer = array[i] + array[j];
-					if (buffer == sum) {
-						return true;
-					}
-				}	
+			if (array[i] > 0 && sum % array[i] == 0) {
+				for (int j = 0; j < array.length; j++) {
+					if (j != i) {
+						buffer = array[i] + array[j];
+						if (buffer == sum) {
+							return true;
+						}
+					}	
+				}
 			}
 		}
 		
