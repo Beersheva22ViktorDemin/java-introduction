@@ -1,4 +1,3 @@
-import java.util.Arrays;
 
 public class Strings {
 	/**
@@ -10,11 +9,27 @@ public class Strings {
 	 *         length 2. the same symbols just in different order
 	 */
 	public static boolean isAnagram(String str1, String str2) {
+		boolean result = false;
 		char[] array1 = str1.toCharArray();
 		char[] array2 = str2.toCharArray();
-		Arrays.sort(array1);
-		Arrays.sort(array2);
+		if (array1.length == array2.length) {
+			int[] buffer = new int[Character.MAX_VALUE];
+			for (int i = 0; i < array1.length; i++) {
+				buffer[array1[i]]++;
+				buffer[array2[i]]--;
+			}
+			result = isEmptyArray(buffer);
+		}
 
-		return Arrays.equals(array1, array2);
+		return result;
+	}
+
+	private static boolean isEmptyArray(int[] array) {
+		for (int i = 0; i < array.length; i++) {
+			if (array[i] != 0) {
+				return false;
+			}
+		}
+		return true;
 	}
 }
