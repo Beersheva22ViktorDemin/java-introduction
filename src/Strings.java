@@ -1,4 +1,3 @@
-
 public class Strings {
 	/**
 	 * 
@@ -31,5 +30,21 @@ public class Strings {
 			}
 		}
 		return true;
+	}
+	
+	public static void sortStringNumbers(String[] array) {
+		int[] buffer = new int[Byte.MAX_VALUE - Byte.MIN_VALUE + 1];
+		for (int i = 0; i < array.length; i++) {
+			int index = Integer.parseInt(array[i]) - Byte.MIN_VALUE;
+
+			buffer[index]++;
+		}
+		int outputIndex = 0;
+		for (int bufferIndex = 0; bufferIndex < buffer.length; bufferIndex++) {
+			for (int j = 0; j < buffer[bufferIndex]; j++) {
+				array[outputIndex] = String.valueOf(bufferIndex + Byte.MIN_VALUE);
+				outputIndex++;
+			}
+		}
 	}
 }

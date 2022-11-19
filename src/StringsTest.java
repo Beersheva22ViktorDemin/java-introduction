@@ -21,4 +21,17 @@ class StringsTest {
 		assertFalse(Strings.isAnagram(word, "yelllo"));
 
 	}
+
+	@Test
+	void sortStringNumbersTest() {
+		String[][][] dataProvider = { 
+				{ { "-1", "1" }, { "-1", "1" } },
+				{ { "1", "-1", "1", "-1" }, { "-1", "-1", "1", "1"} },
+				{ { "1", "127", "2", "-128", "-1", "0" }, { "-128", "-1", "0", "1", "2", "127"} },
+				};
+		for (String[][] line : dataProvider) {
+			Strings.sortStringNumbers(line[0]);
+			assertArrayEquals(line[1], line[0]);
+		}
+	}
 }
