@@ -47,4 +47,17 @@ public class Strings {
 			}
 		}
 	}
+	
+	public static String javaNameExp() {
+		
+		return "[a-zA-Z$][\\w$]*|_[\\w$]+";
+	}
+	public static String ipV4Octet() {
+		//TODO
+		return "";
+	}
+	public static String ipV4() {
+		//TODO
+		return "";
+	}
 }
