@@ -49,15 +49,16 @@ public class Strings {
 	}
 	
 	public static String javaNameExp() {
-		
 		return "[a-zA-Z$][\\w$]*|_[\\w$]+";
 	}
+	
 	public static String ipV4Octet() {
-		//TODO
-		return "";
+		//max values if 3 digits: 099 199 249 255
+		return "\\d{1,2}|[0-1][0-9]{2}|2[0-4][0-9]|25[0-5]";
 	}
+	
 	public static String ipV4() {
-		//TODO
-		return "";
+		String ipV4Octet = ipV4Octet();
+		return String.format("((%s)\\.){3}(%s)", ipV4Octet, ipV4Octet);
 	}
 }
