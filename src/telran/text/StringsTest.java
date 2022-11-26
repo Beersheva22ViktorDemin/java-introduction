@@ -129,5 +129,10 @@ class StringsTest {
 		
 		assertEquals(10.5, computeArithmenticExpression("2 + (2 + 1) * 2 + 0.5", null, null));
 		assertEquals(10.5, computeArithmenticExpression("(2 + (2 + 1) * 2 + 0.5)", null, null));
+		assertTrue(Double.isNaN(computeArithmenticExpression("(2 + (2 + 1) * 2 + 0.5", null, null)));
+		
+		assertEquals(2.5, computeArithmenticExpression("4 / 2 + 0.5", null, null));
+//		assertEquals(2.5, computeArithmenticExpression("-2 + 2 + 1 * 2 + 0.5", null, null)); //Negative numbers do not supported
+		
 	}
 }
