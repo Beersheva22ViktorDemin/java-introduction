@@ -66,17 +66,13 @@ public class Strings {
 	
 	private static String arithmeticExpression() {
 		String operatorExp = operator();
-		String operandExp = operand();
-		// FIXME
-		// adds checking right placing the braces
+		String operandExp = "[(]*" + operand() + "[)]*";
 
-		return String.format("%1$s(%2$s%1$s)*", operandExp, operatorExp);
+		return String.format("[(]*" + "%1$s(%2$s%1$s)*" + "[)]*", operandExp, operatorExp);
 	}
 
 	private static String operand() {
-		// FIXME
-		// adds possibility of using Java variables
-		return "(\\d+\\.?\\d*|\\.\\d+)";
+		return String.format("(\\d+\\.?\\d*|\\.\\d+|%s)", javaNameExp());
 	}
 
 	public static boolean isArithmeticExpression(String expression) {
@@ -85,7 +81,6 @@ public class Strings {
 	}
 
 	private static String operator() {
-
 		return "([-+*/])";
 	}
 
@@ -132,12 +127,34 @@ public class Strings {
 	}
 
 	private static Double getOperandValue(String operand, double[] values, String[] names) {
-		// FIXME for possible variable names
-		return Double.parseDouble(operand);
+		Double result = Double.NaN;
+		if (names != null && values != null && operand.matches(javaNameExp())) {
+			int i = 0;
+			while (result.isNaN() && i < names.length) {
+				if (operand.equals(names[i])) {
+					result = values[i];
+				}
+				i++;
+			}
+		} else {
+			result = Double.parseDouble(operand);
+		}
+		
+		return result;
 	}
 
 	public static boolean checkBraces(String expression) {
-		// TODO
-		return true;
+		int length = expression.length();
+		int counter = 0;
+		for (int i = 0; i < length; i++) {
+			char simbol = expression.charAt(i);
+			if (simbol == '(') {
+				counter++;
+			} else if (simbol == ')') {
+				counter--;
+			}
+		}
+		
+		return counter == 0;
 	}
 }

@@ -85,6 +85,7 @@ class StringsTest {
 		assertTrue("199.249.255.209".matches(ipV4()));
 		assertTrue("99.99.99.05".matches(ipV4()));
 	}
+	
 	@Test
 	void ipV4TestFalse() {
 		assertFalse("*.19.10.10".matches(ipV4()));
@@ -94,6 +95,29 @@ class StringsTest {
 		assertFalse("255.19.10.10.".matches(ipV4()));
 		assertFalse("255.19".matches(ipV4()));
 	}
+	
+	@Test
+	void isArithmeticExpressionTest() {
+		assertTrue(isArithmeticExpression("10 * (2) + 3"));
+		assertTrue(isArithmeticExpression("(10 * 2 + 3))"));
+		
+		assertFalse(isArithmeticExpression("10 * 2( + 3)"));
+		assertFalse(isArithmeticExpression("10 * )2) + 3"));
+		
+		assertTrue(isArithmeticExpression("a + 2 + c * 2 + 0.5"));
+		
+		assertFalse(isArithmeticExpression("_ + 2 + c * 2 + d23"));
+		assertFalse(isArithmeticExpression("1java + 2 + c * 2 + d23"));
+//		assertFalse(isArithmeticExpression("$ _ + 2 + c * 2 + d23")); //This test fails because of remove spaces
+	}
+	
+	@Test
+	void checkBracesTest() {
+		assertTrue(checkBraces("()"));
+		assertFalse(checkBraces("())"));
+		assertFalse(checkBraces("((())"));
+	}
+	
 	@Test
 	void computeExpressionTest() {
 		assertEquals(10.5, computeArithmenticExpression("2 + 2 + 1 * 2 + 0.5", null, null));
@@ -102,5 +126,8 @@ class StringsTest {
 				new String[] {"a", "c"}));
 		assertTrue(Double.isNaN(computeArithmenticExpression("a + 2 + c * 2 + d23", new double[] {2, 1},
 				new String[] {"a", "c"})));
+		
+		assertEquals(10.5, computeArithmenticExpression("2 + (2 + 1) * 2 + 0.5", null, null));
+		assertEquals(10.5, computeArithmenticExpression("(2 + (2 + 1) * 2 + 0.5)", null, null));
 	}
 }
