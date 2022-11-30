@@ -1,3 +1,5 @@
+import telran.digital.numbers.Numbers;
+
 public class Matrices {
 	public static int[][] createRandomMatrix(int rows, int columns, int minValue, int maxValue) {
 		int res[][] = new int[rows][columns];

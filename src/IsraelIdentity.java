@@ -1,3 +1,5 @@
+import telran.digital.numbers.Numbers;
+
 public class IsraelIdentity {
 	public static final int COUNT_OF_DIGITS = 9;
 	

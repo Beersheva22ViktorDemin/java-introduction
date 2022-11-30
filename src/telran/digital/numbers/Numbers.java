@@ -1,3 +1,5 @@
+package telran.digital.numbers;
+
 public class Numbers {
 	public static int countDigits(long number) {
 		int res = 0;
