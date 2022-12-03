@@ -9,19 +9,17 @@ public class DigitalNumbersPrinting {
 		int[] digits = Numbers.getDigits(number);
 		String[] result = new String[height];
 		Arrays.fill(result, "");
-		
+
 		for (int digit : digits) {
 			String[] currentDigit = getDigitStrings(digit, offset, width, height);
 			for (int row = 0; row < result.length; row++) {
 				result[row] += currentDigit[row];
 			}
-
-//			displayStrings(currentDigit);
 		}
-		
+
 		displayStrings(result);
 	}
-	
+
 	private static String[] getDigitStrings(int digit, int offset, int width, int height) {
 		String[] result = new String[height];
 		switch (digit) {
@@ -56,7 +54,7 @@ public class DigitalNumbersPrinting {
 			result = nine(offset, width, height);
 			break;
 		}
-		
+
 		return result;
 	}
 
@@ -64,160 +62,114 @@ public class DigitalNumbersPrinting {
 		return " ".repeat(offset) + SYMBOL.repeat(length);
 	}
 
-	public static String[] verticalLine(int offset, int width, int height) {
+	public static String[] verticalLine(int offset, int height) {
 		String[] res = new String[height];
 		for (int i = 0; i < res.length; i++) {
-			res[i] = " ".repeat(offset) + SYMBOL + " ".repeat(width - 1);
+			res[i] = " ".repeat(offset) + SYMBOL;
 		}
 		return res;
 	}
 
 	public static String[] twoVerticalLines(int offset, int width, int height) {
-		String[] result = new String[height];
-		for (int i = 0; i < result.length; i++) {
-			result[i] = " ".repeat(offset) + SYMBOL + " ".repeat(width - 2) + SYMBOL;
+		String[] res = new String[height];
+		for (int i = 0; i < res.length; i++) {
+			res[i] = " ".repeat(offset) + SYMBOL + " ".repeat(width - 2) + SYMBOL;
 		}
-		return result;
+		return res;
 	}
 
 	public static String[] zero(int offset, int width, int height) {
-		String[] result = new String[height];
-		result[0] = line(offset, width);
+		String[] res = new String[height];
+		res[0] = line(offset, width);
 		String[] lines = twoVerticalLines(offset, width, height - 2);
-		System.arraycopy(lines, 0, result, 1, lines.length);
-		result[height - 1] = line(offset, width);
-		return result;
-	}
-
-	public static String[] one(int offset, int width, int height) {
-		return verticalLine(offset + width - 1, width, height);
+		System.arraycopy(lines, 0, res, 1, lines.length);
+		res[height - 1] = line(offset, width);
+		return res;
 	}
 	
-	public static String[] two(int offset, int width, int height) {
-		String[] result = new String[height];
-		result[0] = line(offset, width);
-		int middle = (int) height / 2;
-
-		String[] verticalLine = verticalLine(offset + width - 1, 1, middle - 1);
-		System.arraycopy(verticalLine, 0, result, 1, verticalLine.length);
-		
-		result[middle] = line(offset, width);
-		
-		verticalLine = verticalLine(offset, width, middle - 1);
-		System.arraycopy(verticalLine, 0, result, middle + 1, verticalLine.length);
-		
-		result[height - 1] = line(offset, width);
-	
-		return result;
-	}
-	
-	public static String[] three(int offset, int width, int height) {
-		String[] result = new String[height];
-		
-		int middle = (int) height / 2;
-		
-		result[0] = line(offset, width);
-		String[] verticalLine = verticalLine(offset + width - 1, 1, middle - 1);
-		System.arraycopy(verticalLine, 0, result, 1, verticalLine.length);
-		
-		result[middle] = line(offset, width);
-		
-		verticalLine = verticalLine(offset + width - 1, 1, middle - 1);
-		System.arraycopy(verticalLine, 0, result, middle + 1, verticalLine.length);
-		
-		result[height - 1] = line(offset, width);
-	
-		return result;
-	}
-	
-	public static String[] four(int offset, int width, int height) {
-		String[] result = new String[height];		
-		String[] verticalLines = twoVerticalLines(offset, width, height / 2);
-		System.arraycopy(verticalLines, 0, result, 0, verticalLines.length);
-				
-		result[height / 2] = line(offset, width);
-		String[] verticalLine = verticalLine(offset + width - 1, 1, (height - 1)/ 2);
-		System.arraycopy(verticalLine, 0, result, height / 2 + 1, verticalLine.length);
-		
-		return result;
-	}
-	
-	public static String[] five(int offset, int width, int height) {
-		String[] result = new String[height];
-		result[0] = line(offset, width);
-
-		String[] verticalLine = verticalLine(offset, width, (height - 1) / 2 - 1);
-		System.arraycopy(verticalLine, 0, result, 1, verticalLine.length);
-		
-		result[(height - 1) / 2] = line(offset, width);
-		
-		verticalLine = verticalLine(offset + width - 1, 1, (height - 1) / 2 - 1);
-		System.arraycopy(verticalLine, 0, result, (height - 1) / 2 + 1, verticalLine.length);
-		
-		result[height - 1] = line(offset, width);
-	
-		return result;
-	}
-
-	public static String[] six(int offset, int width, int height) {
-		//line + vertical + line + double + line
-		String[] result = new String[height];
-		result[0] = line(offset, width);
-
-		String[] verticalLine = verticalLine(offset, width, (height - 1) / 2 - 1);
-		System.arraycopy(verticalLine, 0, result, 1, verticalLine.length);
-		
-		result[(height - 1) / 2] = line(offset, width);
-		
-		verticalLine = twoVerticalLines(offset, width, (height - 1) / 2 - 1);
-		System.arraycopy(verticalLine, 0, result, (height - 1) / 2 + 1, verticalLine.length);
-		
-		result[height - 1] = line(offset, width);
-	
-		return result;
-	}
-
-	public static String[] seven(int offset, int width, int height) {
-		//line + vertical + line + vertical
-		String[] result = new String[height];
-		result[0] = line(offset, width);
-
-		String[] verticalLine = twoVerticalLines(offset, width, (height - 1) / 2);
-		System.arraycopy(verticalLine, 0, result, 1, verticalLine.length);
-		
-		verticalLine = verticalLine(offset + width - 1, 1, (height - 1) / 2);
-		System.arraycopy(verticalLine, 0, result, (height - 1) / 2 + 1, verticalLine.length);
-	
-		return result;
+	public static String [] one(int offset, int width, int height) {
+		return verticalLine(offset + width - 1, height);
 	}
 
 	public static String[] eight(int offset, int width, int height) {
-		String[] result = new String[height];
-		String[] zero = zero(offset, width, height);
-		System.arraycopy(zero, 0, result, 0, zero.length);
-		result[(height - 1) / 2] = line(offset, width);
-	
-		return result;
+		String[] res = zero(offset, width, height);
+		int heightPart = heightPart(height);
+		res[heightPart] = line(offset, width);
+		return res;
+
+	}
+
+	public static String[] two(int offset, int width, int height) {
+		String res[] = eight(offset, width, height);
+		int heightPart = heightPart(height);
+		cleanLinePart(res, offset, 1, heightPart);
+		cleanLinePart(res, offset + width - 1, heightPart + 1, height - 1);
+		return res;
+	}
+
+	public static String[] five(int offset, int width, int height) {
+		String res[] = eight(offset, width, height);
+		int heightPart = heightPart(height);
+		cleanLinePart(res, offset + width - 1, 1, heightPart);
+		cleanLinePart(res, offset, heightPart + 1, height - 1);
+		return res;
 	}
 
 	public static String[] nine(int offset, int width, int height) {
-		String[] result = new String[height];
-		result[0] = line(offset, width);
+		String res[] = eight(offset, width, height);
+		int heightPart = heightPart(height);
+		cleanLinePart(res, offset, heightPart + 1, height - 1);
+		return res;
+	}
 
-		String[] verticalLine = twoVerticalLines(offset, width, (height - 1) / 2 - 1);
-		System.arraycopy(verticalLine, 0, result, 1, verticalLine.length);
-		
-		result[(height - 1) / 2] = line(offset, width);
-		
-		verticalLine = verticalLine(offset + width - 1, 1, (height - 1) / 2);
-		System.arraycopy(verticalLine, 0, result, (height - 1) / 2 + 1, verticalLine.length);
-	
-		return result;
+	public static String[] six(int offset, int width, int height) {
+		String res[] = eight(offset, width, height);
+		int heightPart = heightPart(height);
+		cleanLinePart(res, offset + width - 1, 1, heightPart);
+
+		return res;
+	}
+
+	public static String[] seven(int offset, int width, int height) {
+		String res[] = one(offset, width, height);
+		res[0] = line(offset, width);
+		return res;
+	}
+
+	public static String[] three(int offset, int width, int height) {
+		String res[] = eight(offset, width, height);
+		int heightPart = heightPart(height);
+		cleanLinePart(res, offset, 1, heightPart);
+		cleanLinePart(res, offset, heightPart + 1, height - 1);
+		return res;
+	}
+
+	public static String[] four(int offset, int width, int height) {
+		String res[] = twoVerticalLines(offset, width, height);
+		int heightPart = heightPart(height);
+		res[heightPart] = line(offset, width);
+		cleanLinePart(res, offset, heightPart + 1, height);
+		return res;
 	}
 
 	public static void displayStrings(String[] strings) {
 		for (int i = 0; i < strings.length; i++) {
 			System.out.println(strings[i]);
+		}
+	}
+
+	private static int heightPart(int height) {
+		int delta = height % 2 == 0 ? 1 : 0;
+		int heightPart = height / 2 - delta;
+		return heightPart;
+	}
+
+	private static void cleanLinePart(String line[], int position, int indexFrom, int height) {
+
+		for (int i = indexFrom; i < height; i++) {
+			char[] arLine = line[i].toCharArray();
+			arLine[position] = ' ';
+			line[i] = new String(arLine);
 		}
 	}
 }

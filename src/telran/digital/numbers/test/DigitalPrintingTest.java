@@ -14,7 +14,7 @@ public class DigitalPrintingTest {
 	@Test
 	@Disabled
 	void verticalLineTest() {
-		displayStrings(verticalLine(30, 1, 5));
+		displayStrings(verticalLine(30, 5));
 	}
 
 	@Test
